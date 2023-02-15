@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:st108/controllers/step_progress_controller.dart';
-import 'package:st108/widgets/step_progress.dart';
+
+import 'package:st108/widgets/muestra_peso.dart';
 import '../widgets/menu_lateral.dart';
 import '../widgets/save_button.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
-  final progressCtrl = Get.put(StepProgressController());
-  
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('ST-108', style: TextStyle(color: Colors.black87),),
-        backgroundColor: Colors.grey[500],
+        backgroundColor: const Color.fromARGB(255, 96, 98, 100),
         shadowColor: Colors.black87,
         centerTitle: true,
       ),
@@ -24,9 +22,9 @@ class HomeScreen extends StatelessWidget {
        child: Column(
          children: [
            Center(
-            child: StepProgress(),
-           ),
-             const Center(
+            child: MuestraPeso(),
+           ), const SizedBox(height: 95,),
+             const Center(   
           child: SaveButton(),
          ),
          ],
@@ -37,6 +35,8 @@ class HomeScreen extends StatelessWidget {
   
   }
 }
+
+
 
 //  Future openPortUdp() async {
 

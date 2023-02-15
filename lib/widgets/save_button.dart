@@ -15,14 +15,14 @@ class SaveButton extends StatelessWidget {
           elevation: 0,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             disabledColor: Colors.grey,
-            color: Colors.grey,
+            color: const Color.fromARGB(124, 100, 97, 99),
             splashColor: Colors.black,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
               child: const Text('Guardar', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
             ),
             onPressed: (){
-             Get.snackbar("Hola", "Tus cambios se guardaron exitosamente");
+             Get.snackbar("Hola!", "Tus cambios se guardaron exitosamente");
             },
            ),
        ],

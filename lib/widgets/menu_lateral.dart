@@ -35,16 +35,6 @@ class MenuLateral extends StatelessWidget {
            const SizedBox(height: 3,),
 
            ListTile(
-             leading: const Icon(Icons.wifi),
-             title: const Text('Conexión', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
-             onTap: () {
-              Navigator.pushNamed(context, 'conexion');
-             },
-           ),
-
-           const SizedBox(height: 3,),
-
-           ListTile(
              leading: const Icon(Icons.import_export),
              title: const Text('Exportar', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
              onTap: () {
