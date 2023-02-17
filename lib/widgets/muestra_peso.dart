@@ -25,28 +25,41 @@ final openUdpCtrl = Get.put(OpenPortUdpController());
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
       const SizedBox(height: 20,),
-      DashedCircularProgressBar.aspectRatio( 
-      aspectRatio: 2, // width ÷ height
-      valueNotifier: value,
-      progress: double.parse(controller.peso.string),
-      maxProgress: 8400,
-      corners: StrokeCap.butt,
-      foregroundColor: const Color.fromARGB(255, 1, 5, 10),
-      backgroundColor: const Color.fromARGB(125, 138, 135, 137),
-      foregroundStrokeWidth: 18,
-      backgroundStrokeWidth: 18,
-      animation: true,
-      child: Center(
-      child: ValueListenableBuilder(
-      valueListenable: value,
-      builder: (_, double value, __) => Text(
-      '${value.toInt()}',
-      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600), 
-      selectionColor: Colors.green,
-      ),
+      Container(
+        height: 160,
+        width: 160,
+         decoration: BoxDecoration(
+            color: controller.estable == '1' ? Color.fromARGB(255, 65, 216, 97) : Colors.white,
+            borderRadius: BorderRadius.circular(100)
+            ),
+        child: DashedCircularProgressBar.aspectRatio( 
+        aspectRatio: 2, // width ÷ height       
+        valueNotifier: value,
+        progress: double.parse(controller.peso.string),       
+        maxProgress: 8400,
+        corners: StrokeCap.butt,
+        foregroundColor: Color.fromARGB(255, 11, 90, 155),
+        backgroundColor: const Color.fromARGB(255, 211, 215, 216),
+        foregroundStrokeWidth: 18,
+        backgroundStrokeWidth: 18,
+        animation: true,
+        child: Center(
+        child: ValueListenableBuilder(
+        valueListenable: value,
+        builder: (_, double value, __){
+          return
+             Text(
+            '${value.toInt()}',
+            style: const TextStyle(fontSize: 45, fontWeight: FontWeight.w600), 
+            
+            );
+        }
+         
+
     ),
   ),
 ),
+      ),
           ],
         );
       },

@@ -12,19 +12,29 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ST-108', style: TextStyle(color: Colors.black87),),
-        backgroundColor: const Color.fromARGB(255, 96, 98, 100),
+        title: const Text('ST-108', style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 25),),
+        backgroundColor: const Color.fromARGB(255, 11, 90, 155),
         shadowColor: Colors.black87,
         centerTitle: true,
       ),
      drawer: const MenuLateral(),
-     body: Center(
+     body: SingleChildScrollView(
+        
        child: Column(
          children: [
-           Center(
+          Center(
             child: MuestraPeso(),
-           ), const SizedBox(height: 95,),
-             const Center(   
+          ),
+
+           Column(
+            children: [
+              _crearInputIndicador(),
+              _crearInputLote(),
+              _crearInputEstado(),
+              _crearInputCaravana()
+              ]
+          ),
+          const Center(   
           child: SaveButton(),
          ),
          ],
@@ -32,18 +42,70 @@ class HomeScreen extends StatelessWidget {
      ),
       backgroundColor: Colors.grey[100],
     );
-  
+  }
+ Widget _crearInputIndicador() { // AMARILLO
+
+  return Container(
+    padding: const EdgeInsets.all(10),
+    child: TextFormField(
+      autocorrect: false,
+      maxLength: 6,
+      decoration: const InputDecoration(
+        labelText: 'Indicador', labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Colors.black54),
+        hintText: 'Insertar indicador',
+        
+        
+      ),
+    ),
+  );
+  }
+ Widget _crearInputLote() { // NARANJA
+
+  return Container(
+    padding: const EdgeInsets.all(10),
+    child: TextFormField(
+      autocorrect: false,
+      keyboardType: TextInputType.name,
+      maxLength: 12,
+      decoration: const InputDecoration(
+        
+        labelText: 'Lote', labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Colors.black54),
+        hintText: 'Insertar Lote',
+        
+        
+      ),
+    ),
+  );
+  }
+ Widget _crearInputEstado() { // ESTADO
+
+  return Container(
+    padding: const EdgeInsets.all(10),
+    child: TextFormField(
+      autocorrect: false,
+      maxLength: 4,
+      decoration: const InputDecoration(
+        labelText: 'Estado', labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Colors.black54),
+      ),
+    ),
+  );
+  }
+ Widget _crearInputCaravana() { // CARAVANA
+
+  return Container(
+    padding: const EdgeInsets.all(10),
+    child: TextFormField(
+      autocorrect: false,
+      maxLength: 22,
+      decoration: const InputDecoration(
+        labelText: 'Caravana', labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Colors.black54),
+        hintText: 'Insertar Caravana',
+        
+        
+      ),
+    ),
+  );
   }
 }
 
 
-
-//  Future openPortUdp() async {
-
-//       var receiver = await UDP.bind(Endpoint.any(port: const Port(5900)));
-
-//       receiver.asStream().listen((datagram) {
-//         var str = String.fromCharCodes(datagram!.data);
-//         stdout.write(str);
-//       });
-//       }
