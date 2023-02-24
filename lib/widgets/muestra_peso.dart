@@ -24,7 +24,7 @@ final openUdpCtrl = Get.put(OpenPortUdpController());
      return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-      const SizedBox(height: 20,),
+      const SizedBox(height: 10,),
       Container(
         height: 160,
         width: 160,
@@ -38,7 +38,7 @@ final openUdpCtrl = Get.put(OpenPortUdpController());
         progress: double.parse(controller.peso.string),       
         maxProgress: 8400,
         corners: StrokeCap.butt,
-        foregroundColor: Color.fromARGB(255, 11, 90, 155),
+        foregroundColor: const Color.fromARGB(255, 11, 90, 155),
         backgroundColor: const Color.fromARGB(255, 211, 215, 216),
         foregroundStrokeWidth: 18,
         backgroundStrokeWidth: 18,
@@ -53,8 +53,7 @@ final openUdpCtrl = Get.put(OpenPortUdpController());
             style: const TextStyle(fontSize: 45, fontWeight: FontWeight.w600), 
             
             );
-        }
-         
+        } 
 
     ),
   ),

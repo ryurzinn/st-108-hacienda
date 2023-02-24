@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: 'home',
       routes: {
-        'home' :(context) => HomeScreen(),
+        'home' :(context) =>  HomeScreen(),
         'pesadas' :(_) =>  PesadasPage(),
         'exportar' :(_) =>  ExportarPage(),
         'maximo' :(_) =>  MaximoPage(),

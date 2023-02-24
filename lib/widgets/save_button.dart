@@ -1,31 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:st108/database/db_pesada.dart';
+
 
 class SaveButton extends StatelessWidget {
-  const SaveButton({super.key});
+   DBpesadas ?dBpesadas;
+   SaveButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-     child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-       children: [
-        const SizedBox(width: 15, height: 1,),
-         MaterialButton(
-          elevation: 0,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            color: const Color.fromARGB(255, 11, 90, 155),
-            splashColor: Colors.grey,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-              child: const Text('Guardar', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+
+    return Center(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Stack(
+          children: [
+            Positioned.fill(child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(colors: [
+                  Colors.black12,
+                  Colors.white,
+                  Colors.grey
+                ])
+              ),
+            )
             ),
+            TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.white, padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 90),
+              textStyle: const TextStyle(fontSize: 20, )
+            ),           
             onPressed: (){
-             Get.snackbar("Hola!", "Tus cambios se guardaron exitosamente",);
+              
             },
-           ),
-       ],
-     ),
+            child: const Text('GUARDAR', textAlign: TextAlign.center, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.black, ),)
+            
+            ),
+          ],
+        ),
+      ),
     );
   }
-}
+
+}  
+
+void savePesadas() async{
+  
+  final guardarPesadas = TextEditingController();
+  
+
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('pesadas', guardarPesadas.text );
+      
+  Get.snackbar('Se guardo Correctamente', 'si sale esto es porque funciona', backgroundColor: Colors.green, snackStyle: SnackStyle.FLOATING);
+
+  }
+    
+
+

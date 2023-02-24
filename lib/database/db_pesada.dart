@@ -4,14 +4,14 @@ class DBpesadas{
 
   static String tableNamePesadas = 'tpesadas';
   static String  tablePesadas= '''    CREATE TABLE $tableNamePesadas (
-    id INTEGER AUTOINCREMENTAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     fecha TEXT,
     hora TEXT,
     indicador TEXT,
     lote TEXT,
     estado TEXT,
     caravana TEXT,
-    peso TEXT,
+    peso TEXT
     )
   '''; 
 

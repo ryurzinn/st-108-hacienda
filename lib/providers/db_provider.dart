@@ -60,5 +60,10 @@ class DBProvider {
 
   }
 
+   Future<int?> deletePesada(int id) async{
+    final db = await database;
+    final resp = await db?.delete(DBpesadas.tableNamePesadas, where: 'id=?', whereArgs: [id]);
+    return resp;
+  }
 
 }

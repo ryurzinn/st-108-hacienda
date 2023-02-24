@@ -16,14 +16,14 @@ class PesadasModel {
         required this.peso,
     });
 
-    final int id;
-    final int fecha;
-    final int hora;
-    final int indicador;
-    final int lote;
-    final int estado;
-    final int caravana;
-    final int peso;
+    late final int id;
+    final String fecha;
+    final String hora;
+    final String indicador;
+    final String lote;
+    final String estado;
+    final String caravana;
+    final String peso;
 
     factory PesadasModel.fromJson(String str) => PesadasModel.fromMap(json.decode(str));
 
