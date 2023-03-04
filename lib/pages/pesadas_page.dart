@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/pesadas.dart';
+import '../models/pesadas_model.dart';
 import '../providers/stream_provider_pesadas.dart';
 
 
@@ -25,7 +25,15 @@ class PesadasPage extends StatelessWidget {
         flexibleSpace: Container(
           decoration:  const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.grey, Colors.white, Colors.white, Colors.grey, Colors.grey, ]
+              colors: [
+                  Colors.black,
+                  Colors.white,
+                  Colors.grey,
+                  Colors.white,
+                  Colors.grey,
+                  Colors.black,],
+            begin:  Alignment.topLeft,
+            end: Alignment.topRight
             )
           ),
         ),
@@ -35,7 +43,7 @@ class PesadasPage extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<List<PesadasModel>> snapshot) {
 
         if(!snapshot.hasData){
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
 
         final lista = snapshot.data;
@@ -44,11 +52,11 @@ class PesadasPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10),
           itemCount: lista!.length,
           itemBuilder: (context, index) {    
-            return Dismissible(        
+            return Dismissible(      
               key: Key(context.toString()),
               direction: DismissDirection .startToEnd,
               background: Container(
-                margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                margin: const EdgeInsets.symmetric(vertical: 10,),
                 color: Colors.red[400],
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 10),
@@ -62,7 +70,9 @@ class PesadasPage extends StatelessWidget {
                   context: context,
                   builder: (_) {
                     return AlertDialog(
-                      insetPadding: const EdgeInsets.all(60),
+                      backgroundColor: Colors.grey[400],
+                      icon: const Icon(Icons.delete_forever_outlined),
+                      insetPadding: const EdgeInsets.all(30),
                       title: const Text('Eliminar la Pesada'),
                       content: const Text('¿Seguro que desea eliminar la Pesada?'),
                       actions: [
@@ -79,7 +89,6 @@ class PesadasPage extends StatelessWidget {
                           child: const Text('Si, deseo eliminar la pesada')
                         ),
                       ],
-                
                     );
                   },
                 );
@@ -118,15 +127,15 @@ class PesadasPage extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Indicador: ${lista[index].indicador}   ', style: const TextStyle(fontSize: 12),), 
-                              Text('Lote: ${lista[index].lote}   ', style: const TextStyle(fontSize: 12)),
+                              Row(children: [Text('Indicador : ',style: estiloFilaSuperior), Text(lista[index].indicador, style:estiloFilaSuperiorData)],),
+                              Row(children: [Text('Lote : ',style: estiloFilaSuperior), Text(lista[index].lote, style:estiloFilaSuperiorData)],),
                             ],
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Estado: ${lista[index].estado}   ' , style: const TextStyle(fontSize: 12)),
-                                Text('Caravana: ${lista[index].caravana}', style: const TextStyle(fontSize: 12)), 
+                                Row(children: [Text('Estado : ',style: estiloFilaSuperior), Text(lista[index].estado, style:estiloFilaSuperiorData)],), 
+                                Row(children: [Text('Caravana : ',style: estiloFilaSuperior), Text(lista[index].caravana, style:estiloFilaSuperiorData)],),
                               ],
                             ),
                           Column(
@@ -174,14 +183,11 @@ class PesadasPage extends StatelessWidget {
                  }, child: const Text('Si, deseo eliminar la pesada')
                 
             ),
-              ],
-            
-            );
-
-
-              },
-          );
-  }
+          ], 
+        );
+      },
+   );
+}
 
 
 

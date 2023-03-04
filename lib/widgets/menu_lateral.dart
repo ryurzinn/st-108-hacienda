@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// import 'package:share_plus/share_plus.dart';
+import 'package:st108/utils/utils.dart';
 
 class MenuLateral extends StatelessWidget {
   const MenuLateral({
@@ -8,74 +10,124 @@ class MenuLateral extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-     child: ListView(
-       padding: EdgeInsets.zero,
-       children: [
-         DrawerHeader(
-          decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(2)
+      backgroundColor: Colors.blue,
+      child: Container(
+         decoration:  const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color.fromARGB(255, 5, 50, 87), Color.fromARGB(255, 4, 37, 61), Color.fromARGB(255, 2, 44, 82)],
+            begin:  Alignment.topLeft,
+            end: Alignment.topRight
+            )
           ),
-           child: Column(
-             children: [
-               Expanded(
-                 child: Image.asset('assets/Hook.png')),
-                 const SizedBox(height: 3,),
-                 const Text('Balanzas Hook SA', style: TextStyle(fontSize: 15),),
-                 const SizedBox(height: 3,),
-                 const Text('sistemas@balanzashook.com.ar', style: TextStyle(fontSize: 15),),
-             ],
-           )
-           ),
-           const SizedBox(height: 3,),
-           ListTile(
-             leading: const Icon(Icons.image),
-             title: const Text('Ver Pesadas', style: TextStyle( fontWeight: FontWeight.w500,),),
-             iconColor: Colors.black,
-             visualDensity: VisualDensity.comfortable,
-             onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, 'pesadas');
-             },
-           ),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+             decoration:  const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color.fromARGB(255, 5, 50, 87), Color.fromARGB(255, 4, 37, 61), Color.fromARGB(255, 2, 44, 82)],
+              begin:  Alignment.topLeft,
+              end: Alignment.topRight
+              )
+            ),
+                child: Column(
+                  children: [
+                    Expanded(child: Image.asset('assets/Hook.png')),
+                    const Text(
+                      'Balanzas Hook SA',
+                      style: TextStyle(fontSize: 15, color: Colors.white),
+                    ),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    const Text(
+                      'sistemas@balanzashook.com.ar',
+                      style: TextStyle(fontSize: 12, color: Colors.white),
+                    ),
+                  ],
+                )),
+            const SizedBox(
+              height: 5,
+            ),
+            Container(
+                decoration:  const BoxDecoration(
+                gradient: LinearGradient(
+                colors: [Color.fromARGB(255, 5, 50, 87), Color.fromARGB(255, 4, 37, 61), Color.fromARGB(255, 2, 44, 82)],
+                begin:  Alignment.centerLeft,
+                end: Alignment.topCenter
+              ),
+            ),
+              child: ListTile(
+                leading: const Icon(Icons.remove_red_eye_outlined),
+                title: const Text(
+                  'Ver Pesadas',
+                  style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  color: Colors.white
+                  ),
+                ),
+                iconColor: Colors.white,
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, 'pesadas');
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
 
-           const SizedBox(height: 3,),
+            Container(
+               decoration:  const BoxDecoration(
+               gradient: LinearGradient(
+               colors: [Color.fromARGB(255, 5, 50, 87), Color.fromARGB(255, 4, 37, 61), Color.fromARGB(255, 2, 44, 82)],
+               begin:  Alignment.centerLeft,
+               end: Alignment.topCenter
+              )
+            ),
+              child: ListTile(
+                leading: const Icon(Icons.import_export_sharp),
+                title: const Text(
+                  'Exportar',
+                  style: TextStyle(fontWeight: FontWeight.normal, color: Colors.white),
+                ),
+                iconColor: Colors.white,
+                onTap: () {
+                  // Share.share('com.example.st108');
+                  },            
+              ),
+            ),
 
-           ListTile(
-             leading: const Icon(Icons.import_export),
-             title: const Text('Exportar', style: TextStyle( fontWeight: FontWeight.w500),),
-             iconColor: Colors.black,
-             visualDensity: VisualDensity.comfortable,
-             onTap: () {
-              Navigator.pushNamed(context, 'exportar');
-             },
-           ),
+            const SizedBox(
+              height: 10,
+            ),
 
-           const SizedBox(height: 3,),
-
-           ListTile(
-             leading: const Icon(Icons.build_sharp),
-             title: const Text('Configurar Máximo', style: TextStyle( fontWeight: FontWeight.w500),),
-             iconColor: Colors.black,
-             visualDensity: VisualDensity.comfortable,
-             onTap: () {
-              Navigator.pushNamed(context, 'maximo');
-             },
-           ),
-
-           ListTile(
-             leading: const Icon(Icons.brightness_4_outlined),
-             title: const Text('Cambiar tema', style: TextStyle( fontWeight: FontWeight.w500),),
-             iconColor: Colors.black,
-             visualDensity: VisualDensity.comfortable,
-             onTap: () {
-              // TODO: Cambiar entre modo light y modo dark con un ternario
-              // El tema crearlo dentro del app_theme
-             },
-           ),
-           
-       ],
-     ),
+            Container(
+               decoration:  const BoxDecoration(
+               gradient: LinearGradient(
+               colors: [Color.fromARGB(255, 5, 50, 87), Color.fromARGB(255, 4, 37, 61), Color.fromARGB(255, 2, 44, 82)],
+               begin:  Alignment.centerLeft,
+               end: Alignment.topCenter
+              )
+            ),
+              child: ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text(
+                  'Configurar Máximo',
+                  style: TextStyle(fontWeight: FontWeight.normal, color: Colors.white),
+                ),
+                iconColor: Colors.white,
+                onTap: () {
+                  dialogMaximo(context);
+                },
+                
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
+
+  
 }

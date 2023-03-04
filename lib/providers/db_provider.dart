@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:st108/database/db_maximo.dart';
 import 'package:st108/database/db_pesada.dart';
-import 'package:st108/models/pesadas.dart';
+import 'package:st108/models/maximo_peso_model.dart';
+import 'package:st108/models/pesadas_model.dart';
 
 class DBProvider { 
 
@@ -34,11 +36,12 @@ class DBProvider {
       onCreate: (Database db , int version) async{
 
       await db.execute(DBpesadas.tablePesadas);
+      await db.execute(DBPesadasMaximo.tablePesadasMaximo);
 
       },
       onUpgrade: ((db, oldVersion, newVersion) {
         if(oldVersion < 2){
-          
+
         }
       })
     );
@@ -64,6 +67,28 @@ class DBProvider {
     final db = await database;
     final resp = await db?.delete(DBpesadas.tableNamePesadas, where: 'id=?', whereArgs: [id]);
     return resp;
+  }
+
+  Future<int?> insertarMaximo(DBPesadasMaximo maximo) async{
+      final db = await  database;
+      final resp = await db!.insert(DBPesadasMaximo.tableNamePesadasMaximo, maximo.toMap());
+      
+      return resp;
+  }
+  Future<int?> actualizarMaximo(DBPesadasMaximo maximo) async{
+    final db = await  database;
+    final resp = await db!.update(DBPesadasMaximo.tableNamePesadasMaximo, maximo.toMap(), where: 'id=?', whereArgs: [1]);
+
+    return resp;
+  }
+  Future<List<PesoMaximoModel>> buscarMaximo()async{
+    final db = await database;
+    final resp = await db?.query(DBPesadasMaximo.tableNamePesadasMaximo);
+
+    return resp!.isNotEmpty
+      ? resp.map((e) => PesoMaximoModel.fromMap(e)).toList()
+      : [];
+
   }
 
 }
