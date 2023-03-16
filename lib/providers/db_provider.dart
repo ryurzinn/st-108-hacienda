@@ -62,6 +62,15 @@ class DBProvider {
       : [];
 
   }
+   Future <List<PesadasModel>> getPesadasssss()async{
+    final db = await database;
+    final resp = await db?.query(DBpesadas.tableNamePesadas);
+
+    return resp!.isNotEmpty
+      ? resp.map((e) => PesadasModel.fromMap(e)).toList()
+      : [];
+
+  }
 
    Future<int?> deletePesada(int id) async{
     final db = await database;

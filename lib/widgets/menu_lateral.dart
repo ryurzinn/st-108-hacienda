@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'package:share_plus/share_plus.dart';
 import 'package:st108/utils/utils.dart';
 
 class MenuLateral extends StatelessWidget {
-  const MenuLateral({
-    Key? key,
+  final BuildContext contexto; 
+   const MenuLateral({
+    Key? key, required this.contexto,
   }) : super(key: key);
 
   @override
@@ -93,8 +93,8 @@ class MenuLateral extends StatelessWidget {
                 ),
                 iconColor: Colors.white,
                 onTap: () {
-                  // Share.share('com.example.st108');
-                  },            
+                   
+                },            
               ),
             ),
 
@@ -118,9 +118,9 @@ class MenuLateral extends StatelessWidget {
                 ),
                 iconColor: Colors.white,
                 onTap: () {
-                  dialogMaximo(context);
+                  Navigator.pop(context);
+                  dialogMaximo(contexto);
                 },
-                
               ),
             ),
           ],
@@ -128,6 +128,5 @@ class MenuLateral extends StatelessWidget {
       ),
     );
   }
-
-  
 }
+

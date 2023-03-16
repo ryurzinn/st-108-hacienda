@@ -10,7 +10,7 @@ class ExportarPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Exportar Page'),
       ),
-      drawer: MenuLateral(),
+      drawer: MenuLateral(contexto: context,),
     ),);
   }
 }

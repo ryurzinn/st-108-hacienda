@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:st108/utils/variables.dart';
+import 'package:st108/widgets/input_pesadas.dart';
 
 import '../database/db_maximo.dart';
 import '../providers/db_provider.dart';
@@ -8,19 +10,30 @@ import '../providers/db_provider.dart';
 
     final maximoController = TextEditingController();
 
-    Navigator.pop(context);
+
     showDialog(
       context: context,  
       builder: (_) {
         return AlertDialog( 
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.grey,
           title: const Text(
             'Configurar Máximo',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic),
           ),
-          content: pesadasMaximo(maximoController),
+          content: Container(
+            height: 100,
+            child: InputPesadas(controller: maximoController, 
+            hintColor: const Color.fromARGB(255, 94, 93, 93),
+            fondo: Colors.grey, linea: const Color.fromARGB(255, 83, 83, 83), 
+            label: 'Máximo', hint: '8400..', 
+            helperText: 'Peso máximo', 
+            counterText: '5 números', 
+            length: 5, icon: Icons.numbers_outlined
+            ),
+          ),
+         
           actions: [
             TextButton(
               onPressed: () async {           
@@ -31,6 +44,9 @@ import '../providers/db_provider.dart';
                    insert == 1 ? resp = 1 : resp = null; 
                 }
                 if (resp != 0) {
+                  DBProvider.db.actualizarMaximo(pesadasMaximo);
+                  pesadasMaximo.maximo;
+                  Navigator.pop(context);
                   Get.snackbar(
                     'Máximo',
                     'Configuracion guardada correctamente',
@@ -61,7 +77,7 @@ import '../providers/db_provider.dart';
             const SizedBox(width: 80,),
             TextButton(
                 onPressed: () {
-                  Navigator.of(context).pop(false);
+                  Navigator.pop(context);
                 },
                 child: const Text(
                   'Cancelar',

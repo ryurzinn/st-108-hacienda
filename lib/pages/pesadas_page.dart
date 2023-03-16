@@ -10,6 +10,13 @@ class PesadasPage extends StatelessWidget {
   final pesadasProvider =  StreamProviderPesadas();
   final estiloFilaSuperior = const TextStyle(fontSize: 12, fontStyle: FontStyle.normal);
   final estiloFilaSuperiorData = const TextStyle(fontSize: 12, fontStyle: FontStyle.italic, fontWeight: FontWeight.w600);
+
+  final linearGradient = const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: [0.1, 0.4,0.9],
+              colors: [Color(0xFFa6a6a6),Color(0xFFd9d9d9),  Color.fromARGB(255, 99, 99, 99) ],
+            );
   
 
   @override
@@ -23,18 +30,8 @@ class PesadasPage extends StatelessWidget {
         shadowColor: Colors.grey,
         centerTitle: true,
         flexibleSpace: Container(
-          decoration:  const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                  Colors.black,
-                  Colors.white,
-                  Colors.grey,
-                  Colors.white,
-                  Colors.grey,
-                  Colors.black,],
-            begin:  Alignment.topLeft,
-            end: Alignment.topRight
-            )
+          decoration: BoxDecoration(
+            gradient: linearGradient
           ),
         ),
       ),

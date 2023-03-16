@@ -16,7 +16,6 @@ class HomeScreen extends StatelessWidget {
   final loteController = TextEditingController();
   final estadoController = TextEditingController();
   final caravanaController = TextEditingController();
-
   final openUdpCtrl = Get.put(OpenPortUdpController());
 
   final linearGradient = const LinearGradient(
@@ -41,7 +40,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-     drawer: const MenuLateral(),
+     drawer: MenuLateral(contexto: context,),
      body: SingleChildScrollView(
        child: Column(
          children: [
@@ -74,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                     helperText: '',
                     counterText: '12 Caracteres', 
                     length: 12, 
-                    icon: Icons.ad_units
+                    icon: Icons.house_siding_outlined
                   ),
                       
                   InputPesadas(
@@ -86,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                    helperText: '',
                    counterText: '4 Caracteres',
                    length: 4,
-                   icon: Icons.ad_units
+                   icon: Icons.quiz_outlined
               ),
 
                       
@@ -99,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                     helperText: '',
                     counterText: '22 Caracteres',
                     length: 22,
-                    icon: Icons.ad_units
+                    icon: Icons.abc_outlined
                   )
 
 

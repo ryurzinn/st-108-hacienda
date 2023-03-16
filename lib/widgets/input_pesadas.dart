@@ -15,6 +15,7 @@ class InputPesadas extends StatelessWidget {
   final String counterText;
   final int length;
   final IconData icon;
+  final Color? hintColor;
 
   const InputPesadas({super.key, 
     required this.controller, 
@@ -26,6 +27,7 @@ class InputPesadas extends StatelessWidget {
     required this.counterText, 
     required this.length, 
     required this.icon,
+    this.hintColor
   });
 
 
@@ -35,6 +37,7 @@ class InputPesadas extends StatelessWidget {
     return Column(
       children: [
         TextField(
+        
           controller: controller,
           keyboardType: TextInputType.number,
           maxLength: length, 
@@ -51,7 +54,8 @@ class InputPesadas extends StatelessWidget {
             ),
             
             hintText: hint,
-            hintStyle: const TextStyle(color: Color.fromARGB(255, 146, 146, 146)),
+        
+            hintStyle: const TextStyle(color: Color.fromARGB(255, 88, 88, 88)),
             labelText: label,
             floatingLabelStyle: const TextStyle(color: Colors.black),
             helperText: helperText,

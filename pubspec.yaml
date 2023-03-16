@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  csv: ^5.0.1
   cupertino_icons: ^1.0.2
   dashed_circular_progress_bar: ^0.0.4
   flutter:
@@ -36,6 +37,7 @@ dependencies:
   get: ^4.6.5
   nice_buttons: ^0.0.1
   path_provider: ^2.0.12
+  permission_handler: ^10.2.0
   provider: ^6.0.5
   shared_preferences: ^2.0.17
   sqflite: ^2.2.4+1

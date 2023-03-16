@@ -31,7 +31,7 @@ class MuestraPeso extends StatelessWidget {
 							height: 140,
 							width: 140,
 							decoration: BoxDecoration(
-								color: controller.estable == '1' ? Color.fromARGB(255, 65, 216, 97) : Colors.white,
+								color: controller.estable == '1' ? Color.fromARGB(255, 144, 247, 166) : Colors.white,
 								borderRadius: BorderRadius.circular(100)
 							),
 							child: DashedCircularProgressBar.aspectRatio( 
@@ -40,7 +40,7 @@ class MuestraPeso extends StatelessWidget {
 								progress: double.parse(controller.peso.string),       
 								maxProgress: Variables.maximo,
 								corners: StrokeCap.butt,
-								foregroundColor: const Color.fromARGB(255, 4, 69, 129),
+								foregroundColor: Color.fromRGBO(91, 163, 230, 1),
 								backgroundColor: const Color.fromARGB(255, 211, 215, 216),
 								foregroundStrokeWidth: 18,
 								backgroundStrokeWidth: 18,
