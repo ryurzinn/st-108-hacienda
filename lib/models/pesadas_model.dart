@@ -50,4 +50,16 @@ class PesadasModel {
         "caravana": caravana,
         "peso": peso,
     };
+
+    static List<String> listaPesadasModel(){
+     return [
+      "id",
+      "fecha",
+      "hora",
+      "indicador",
+      "lote",
+      "estado",
+      "caravana",
+      "peso"];
+    }
 }

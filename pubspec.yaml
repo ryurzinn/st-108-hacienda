@@ -32,6 +32,7 @@ dependencies:
   csv: ^5.0.1
   cupertino_icons: ^1.0.2
   dashed_circular_progress_bar: ^0.0.4
+  downloads_path_provider_28: ^0.1.2
   flutter:
     sdk: flutter
   get: ^4.6.5

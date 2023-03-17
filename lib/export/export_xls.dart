@@ -1,4 +1,3 @@
-
 class XMLvariables{
 
   static final XMLvariables _xmLvariables = XMLvariables._internal();
@@ -65,4 +64,4 @@ class XMLvariables{
     
   static String cerrarTabla = "</Table>\n";
   static String cerrarLibro = "</Workbook>\n";
-} 
+  } 

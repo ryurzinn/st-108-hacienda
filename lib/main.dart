@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:st108/database/db_maximo.dart';
-import 'package:st108/pages/exportar_page.dart';
 import 'package:st108/pages/home_screen.dart';
 import 'package:st108/pages/pesadas_page.dart';
 import 'package:st108/providers/db_provider.dart';

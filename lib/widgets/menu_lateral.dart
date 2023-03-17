@@ -1,4 +1,10 @@
+import 'dart:io';
+
+import 'package:downloads_path_provider_28/downloads_path_provider_28.dart';
 import 'package:flutter/material.dart';
+import 'package:st108/export/export_xls.dart';
+import 'package:st108/models/pesadas_model.dart';
+import 'package:st108/providers/db_provider.dart';
 import 'package:st108/utils/utils.dart';
 
 class MenuLateral extends StatelessWidget {
@@ -93,7 +99,7 @@ class MenuLateral extends StatelessWidget {
                 ),
                 iconColor: Colors.white,
                 onTap: () {
-                   
+                   _localPath();
                 },            
               ),
             ),
@@ -128,5 +134,37 @@ class MenuLateral extends StatelessWidget {
       ),
     );
   }
+  
+  Future<String> _localPath()async {
+
+    Directory? directory = await DownloadsPathProvider.downloadsDirectory;
+    return directory!.path;
+  }
+
+Future<File> get _localFile async {
+  final path = await _localPath;
+  return File('$path/pesadas.xls');
+}
+//1- Crear Libro 2- Crear hoja 3- Crear tabla 4- Encabeados de la tabla 5- Crear filas de datos 
+//6- cerrar tabla 7-Cerrar hoja 8- Si no hay mas tablas para crear cerrar libro.
+writeCounter() async {
+  final file = await _localFile;
+  // Escribir el archivo
+   await file.writeAsString(XMLvariables.createBook, mode: FileMode.append);
+   await file.writeAsString(XMLvariables.crearHoja('Pesadas'), mode: FileMode.append);
+   await file.writeAsString(XMLvariables.abrirTabla(8), mode: FileMode.append);
+   await file.writeAsString(XMLvariables.crearEncabezado(PesadasModel.listaPesadasModel()));
+   final resp = await DBProvider.db.getExportarPesadas();
+   await file.writeAsString(XMLvariables.crearFilas(resp), mode: FileMode.append);
+
+   file.writeAsString(XMLvariables.cerrarTabla);
+   file.writeAsString(XMLvariables.cerrarHoja('8'));
+   file.writeAsString(XMLvariables.cerrarLibro);
+
+   
+
+}
+
+
 }
 

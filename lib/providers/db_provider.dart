@@ -62,6 +62,15 @@ class DBProvider {
       : [];
 
   }
+
+ Future<List<Map<String, dynamic>>> getExportarPesadas()async{
+    final db = await database;
+    final resp = await db?.query(DBpesadas.tableNamePesadas);
+    return resp!;
+  }
+
+
+
    Future <List<PesadasModel>> getPesadasssss()async{
     final db = await database;
     final resp = await db?.query(DBpesadas.tableNamePesadas);
