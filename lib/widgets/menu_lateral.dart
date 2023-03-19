@@ -99,7 +99,7 @@ class MenuLateral extends StatelessWidget {
                 ),
                 iconColor: Colors.white,
                 onTap: () {
-                   _localPath();
+                   exportarPesadas();
                 },            
               ),
             ),
@@ -132,22 +132,23 @@ class MenuLateral extends StatelessWidget {
           ],
         ),
       ),
+      
     );
   }
   
-  Future<String> _localPath()async {
+  Future _localPath()async {
 
     Directory? directory = await DownloadsPathProvider.downloadsDirectory;
     return directory!.path;
   }
 
 Future<File> get _localFile async {
-  final path = await _localPath;
+  final path = _localPath;
   return File('$path/pesadas.xls');
 }
 //1- Crear Libro 2- Crear hoja 3- Crear tabla 4- Encabeados de la tabla 5- Crear filas de datos 
 //6- cerrar tabla 7-Cerrar hoja 8- Si no hay mas tablas para crear cerrar libro.
-writeCounter() async {
+exportarPesadas() async {
   final file = await _localFile;
   // Escribir el archivo
    await file.writeAsString(XMLvariables.createBook, mode: FileMode.append);

@@ -1,5 +1,5 @@
-class Variables{
-  static double maximo = 8400.0;
+class Variables {
+   static double maximo = 8400.0;
 
 
 

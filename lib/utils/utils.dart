@@ -44,8 +44,7 @@ import '../providers/db_provider.dart';
                    insert == 1 ? resp = 1 : resp = null; 
                 }
                 if (resp != 0) {
-                  DBProvider.db.actualizarMaximo(pesadasMaximo);
-                  pesadasMaximo.maximo;
+                 Variables.maximo = double.tryParse(maximoController.text)!;
                   Navigator.pop(context);
                   Get.snackbar(
                     'Máximo',
@@ -95,7 +94,7 @@ import '../providers/db_provider.dart';
 
   TextField pesadasMaximo(TextEditingController controller) {
     return TextField(
-      onChanged: (value) {  
+      onChanged: (value) { 
       },
       controller: controller,
       cursorColor: Colors.black,

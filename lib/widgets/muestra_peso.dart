@@ -37,7 +37,8 @@ class MuestraPeso extends StatelessWidget {
 							child: DashedCircularProgressBar.aspectRatio( 
 								aspectRatio: 2, // width ÷ height       
 								valueNotifier: value,
-								progress: double.parse(controller.peso.string),       
+                progress: 2000, 
+								// progress: double.parse(controller.peso.string),      
 								maxProgress: Variables.maximo,
 								corners: StrokeCap.butt,
 								foregroundColor: Color.fromRGBO(91, 163, 230, 1),

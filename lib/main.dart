@@ -36,10 +36,14 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  buscarMaximo()async{   
-    var resp = await DBProvider.db.buscarMaximo();
-    Variables.maximo = double.parse(resp[0].maximo);
-    Variables.maximo;
+  buscarMaximo()async{
+    var resp = await DBProvider.db.buscarMaximo();  
+    if(resp.isNotEmpty){
+      Variables.maximo = double.parse(resp[0].maximo);
+    }else{
+      Variables.maximo = 1000;
+    }
+    
 
   }
 }
