@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:downloads_path_provider_28/downloads_path_provider_28.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:st108/export/export_xls.dart';
 import 'package:st108/models/pesadas_model.dart';
 import 'package:st108/providers/db_provider.dart';
@@ -135,34 +137,77 @@ class MenuLateral extends StatelessWidget {
       
     );
   }
-  
-  Future _localPath()async {
 
-    Directory? directory = await DownloadsPathProvider.downloadsDirectory;
-    return directory!.path;
-  }
+
+  
+  Future<String> get _localPath async {
+  final directory = await DownloadsPathProvider.downloadsDirectory;
+  String direccion = directory!.path;
+  return direccion;
+}
 
 Future<File> get _localFile async {
-  final path = _localPath;
+  final path = await _localPath;
   return File('$path/pesadas.xls');
 }
 //1- Crear Libro 2- Crear hoja 3- Crear tabla 4- Encabeados de la tabla 5- Crear filas de datos 
 //6- cerrar tabla 7-Cerrar hoja 8- Si no hay mas tablas para crear cerrar libro.
-exportarPesadas() async {
+exportarPesadas( ) async {
+
+  if (!await Permission.manageExternalStorage.isGranted) {
+
+  Map<Permission, PermissionStatus> permiso = await [
+    Permission.storage,
+    Permission.manageExternalStorage,
+    Permission.mediaLibrary,
+  ].request();
+
+  }else{
+    Get.snackbar(
+      'exportación',
+      'No se pudo exportar correctamente',
+      backgroundColor:
+          Color.fromARGB(255, 228, 50, 50),
+      snackPosition: SnackPosition.BOTTOM,
+      margin: const EdgeInsets.all(8.0),
+      isDismissible: true,
+      duration: const Duration(seconds: 3),
+      icon: const Icon(
+        Icons.error,
+        color: Color.fromARGB(255, 0, 0, 0),
+      ),
+      padding: const EdgeInsets.symmetric(
+      vertical: 15, horizontal: 15),
+      maxWidth: 300,
+
+    );
+  }
+
   final file = await _localFile;
-  // Escribir el archivo
-   await file.writeAsString(XMLvariables.createBook, mode: FileMode.append);
-   await file.writeAsString(XMLvariables.crearHoja('Pesadas'), mode: FileMode.append);
-   await file.writeAsString(XMLvariables.abrirTabla(8), mode: FileMode.append);
-   await file.writeAsString(XMLvariables.crearEncabezado(PesadasModel.listaPesadasModel()));
-   final resp = await DBProvider.db.getExportarPesadas();
-   await file.writeAsString(XMLvariables.crearFilas(resp), mode: FileMode.append);
+  final resp = await DBProvider.db.getExportarPesadas();
 
-   file.writeAsString(XMLvariables.cerrarTabla);
-   file.writeAsString(XMLvariables.cerrarHoja('8'));
-   file.writeAsString(XMLvariables.cerrarLibro);
+  String archivo = XMLvariables.createBook;
+  archivo += await XMLvariables.crearHoja('Pesadas');
+  archivo += await XMLvariables.abrirTabla('8');
+  archivo += await XMLvariables.crearEncabezado(PesadasModel.listaPesadasModel(), "Pesadas Hacienda");
+  archivo += await XMLvariables.crearFilas(resp);
+  archivo += XMLvariables.cerrarTabla;
+  archivo += await XMLvariables.cerrarHoja('8');
+  archivo += XMLvariables.cerrarLibro;
 
-   
+ await file.writeAsString(archivo);
+
+  // // Escribir el archivo
+  // await file.writeAsString('${XMLvariables.createBook}');
+  // await file.writeAsString(XMLvariables.crearHoja('Pesadas'), mode: FileMode.append);
+  // await file.writeAsString(XMLvariables.abrirTabla(8), mode: FileMode.append);
+  // await file.writeAsString(XMLvariables.crearEncabezado(PesadasModel.listaPesadasModel()));
+  
+  // await file.writeAsString(XMLvariables.crearFilas(resp), mode: FileMode.append);
+
+  // await file.writeAsString(XMLvariables.cerrarTabla);
+  // await file.writeAsString(XMLvariables.cerrarHoja('8'));
+  // await file.writeAsString(XMLvariables.cerrarLibro);
 
 }
 

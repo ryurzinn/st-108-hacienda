@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:udp/udp.dart';
 import 'package:get/get.dart';
 
@@ -7,6 +8,7 @@ class OpenPortUdpController extends GetxController{
 
   var peso = '0'.obs;
   var estable = '1'.obs;
+  var maximo = 1000.0.obs;
 
   
 
@@ -26,6 +28,14 @@ class OpenPortUdpController extends GetxController{
 
       stdout.write(str);
     });
+}
+
+refrescarMaximo(double valor){
+    maximo.value = valor;
+
+    update();
+
+  
 }
 
 }

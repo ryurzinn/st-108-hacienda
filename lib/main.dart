@@ -10,6 +10,10 @@ import 'controllers/open_port_udp_controller.dart';
 void main()async{
   final pesoCtrl = Get.put(OpenPortUdpController());
   pesoCtrl.openPortUdp();
+
+  
+  
+  
   runApp(const MyApp());
 } 
 
@@ -37,11 +41,12 @@ class MyApp extends StatelessWidget {
   }
 
   buscarMaximo()async{
+    final maximoCtrl =Get.put(OpenPortUdpController());
     var resp = await DBProvider.db.buscarMaximo();  
     if(resp.isNotEmpty){
-      Variables.maximo = double.parse(resp[0].maximo);
+      maximoCtrl.refrescarMaximo(double.parse(resp[0].maximo));
     }else{
-      Variables.maximo = 1000;
+      maximoCtrl.refrescarMaximo(1000.0);
     }
     
 

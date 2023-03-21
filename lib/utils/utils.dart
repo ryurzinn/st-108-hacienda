@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:st108/utils/variables.dart';
 import 'package:st108/widgets/input_pesadas.dart';
 
+import '../controllers/open_port_udp_controller.dart';
 import '../database/db_maximo.dart';
 import '../providers/db_provider.dart';
 
@@ -36,7 +37,8 @@ import '../providers/db_provider.dart';
          
           actions: [
             TextButton(
-              onPressed: () async {           
+              onPressed: () async {    
+                final maximoCtrl =Get.put(OpenPortUdpController());       
                 DBPesadasMaximo pesadasMaximo = DBPesadasMaximo(id: '1',maximo: maximoController.text);
                 var resp = await DBProvider.db.actualizarMaximo(pesadasMaximo);
                 if(resp == 0){
@@ -44,7 +46,7 @@ import '../providers/db_provider.dart';
                    insert == 1 ? resp = 1 : resp = null; 
                 }
                 if (resp != 0) {
-                 Variables.maximo = double.tryParse(maximoController.text)!;
+                  maximoCtrl.refrescarMaximo(double.tryParse(maximoController.text)!);
                   Navigator.pop(context);
                   Get.snackbar(
                     'Máximo',
